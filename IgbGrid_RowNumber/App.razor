@@ -1,0 +1,48 @@
+﻿<IgbGrid AutoGenerate="false"
+         Id="grid"
+         Data="GridData"
+         PrimaryKey="ID"
+         Name="grid"
+         @ref="grid"
+         RowSelection="GridSelectionMode.Multiple"
+         RowSelectorTemplateScript="WebGridRowSelectorExcelTemplate"
+         HeadSelectorTemplateScript="WebGridHeaderRowSelectorExcelTemplate"
+         Height="500px">
+    <IgbColumn Field="ID"
+               Header="ID"
+               Name="ID"
+               Width="150px">
+    </IgbColumn>
+    <IgbColumn Name="Name"
+               Field="Name"
+               Header="Name"
+               Width="250px">
+    </IgbColumn>
+    <IgbColumn Name="MyNumber"
+               Field="MyNumber"
+               Header="MyNumber"
+               Width="250px">
+    </IgbColumn>
+</IgbGrid>
+
+@code {
+    private IgbGrid? grid;
+    public List<RowData>? GridData;
+
+    protected override void OnInitialized()
+    {
+        GridData = new List<RowData>();
+
+        for (int i = 0; i < 100; i++)
+        {
+            GridData.Add(new() { ID = "test" + i, Name = "Test" + i, MyNumber = i * 1000 });
+        }
+    }
+
+    public class RowData
+    {
+        public string? ID { get; set; }
+        public string? Name { get; set; }
+        public int MyNumber { get; set; }
+    }
+}
